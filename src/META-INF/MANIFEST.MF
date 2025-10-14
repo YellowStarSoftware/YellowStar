@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: kotlin-stdlib.jar kotlin-stdlib-jdk7.jar kotlin-stdlib-jdk8.jar
+
