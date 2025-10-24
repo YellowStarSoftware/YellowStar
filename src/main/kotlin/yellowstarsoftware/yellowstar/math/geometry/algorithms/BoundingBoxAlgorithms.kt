@@ -1,7 +1,7 @@
 package yellowstarsoftware.yellowstar.math.geometry.algorithms
 
 import yellowstarsoftware.yellowstar.math.geometry.Vector3D
-import yellowstarsoftware.yellowstar.math.geometry.lengthSq
+import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
 import yellowstarsoftware.yellowstar.math.geometry.objects.OrientedBoundingBox
 
 /**
@@ -24,5 +24,5 @@ fun OrientedBoundingBox.distanceToPointSquared(
         linearTerm = 2.0f * (a dot this.forthDirection),
         maxX = aabb.length
     )
-    return part1 + part2 + part3 + a.lengthSq
+    return part1 + part2 + part3 + a.lengthSquared
 }

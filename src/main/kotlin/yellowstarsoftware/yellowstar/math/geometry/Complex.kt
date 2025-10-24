@@ -17,7 +17,7 @@ data class Complex(
     /**
      * Length of the instance.
      */
-    val length get() = sqrt(lengthSq)
+    val length get() = sqrt(lengthSquared)
 
     /**
      * Complex conjugate.
@@ -28,14 +28,20 @@ data class Complex(
      * Sum of complex numbers.
      */
     operator fun plus(z: Complex): Complex {
-        return Complex(x + z.x, y + z.y)
+        return Complex(
+            x + z.x,
+            y + z.y
+        )
     }
 
     /**
      * Difference of complex numbers.
      */
     operator fun minus(z: Complex): Complex {
-        return Complex(x - z.x, y - z.y)
+        return Complex(
+            x - z.x,
+            y - z.y
+        )
     }
 
     /**
@@ -59,10 +65,10 @@ data class Complex(
      * Complex numbers division.
      */
     operator fun div(z: Complex): Complex {
-        val zLength = z.lengthSq
+        val zLengthSquared = z.lengthSquared
         return Complex(
-            (x * z.x + y * z.y) / zLength,
-            (y * z.x - x * z.y) / zLength
+            (x * z.x + y * z.y) / zLengthSquared,
+            (y * z.x - x * z.y) / zLengthSquared
         )
     }
     
@@ -94,7 +100,7 @@ data class Complex(
 /**
  * Squared length of the instance.
  */
-val Complex.lengthSq get() = x * x + y * y
+val Complex.lengthSquared get() = x * x + y * y
 
 /**
  * Rotates vector [v].

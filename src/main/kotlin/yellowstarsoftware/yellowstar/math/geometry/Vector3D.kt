@@ -21,7 +21,7 @@ data class Vector3D(
     /**
      * Length of the instance.
      */
-    val length get() = sqrt(lengthSq)
+    val length get() = sqrt(lengthSquared)
 
     /**
      * Returns a vector orthogonal to this instance.
@@ -42,14 +42,22 @@ data class Vector3D(
      * Vector sum.
      */
     operator fun plus(a: Vector3D): Vector3D {
-        return Vector3D(x + a.x, y + a.y, z + a.z)
+        return Vector3D(
+            x + a.x,
+            y + a.y,
+            z + a.z
+        )
     }
 
     /**
      * Vector difference.
      */
     operator fun minus(a: Vector3D): Vector3D {
-        return Vector3D(x - a.x, y - a.y, z - a.z)
+        return Vector3D(
+            x - a.x,
+            y - a.y,
+            z - a.z
+        )
     }
 
     /**
@@ -63,28 +71,44 @@ data class Vector3D(
      * Vector multiplication by value.
      */
     operator fun times(k: Float): Vector3D {
-        return Vector3D(x * k, y * k, z * k)
+        return Vector3D(
+            x * k,
+            y * k,
+            z * k
+        )
     }
 
     /**
      * Per-component vector multiplication.
      */
     operator fun times(a: Vector3D): Vector3D {
-        return Vector3D(x * a.x, y * a.y, z * a.z)
+        return Vector3D(
+            x * a.x,
+            y * a.y,
+            z * a.z
+        )
     }
 
     /**
      * Vector division by value.
      */
     operator fun div(k: Float): Vector3D {
-        return Vector3D(x / k, y / k, z / k)
+        return Vector3D(
+            x / k,
+            y / k,
+            z / k
+        )
     }
 
     /**
      * Per-component vector division.
      */
     operator fun div(a: Vector3D): Vector3D {
-        return Vector3D(x / a.x, y / a.y, z / a.z)
+        return Vector3D(
+            x / a.x,
+            y / a.y,
+            z / a.z
+        )
     }
 
     /**
@@ -149,7 +173,7 @@ data class Vector3D(
 /**
  * Squared length of the instance.
  */
-val Vector3D.lengthSq get() = x * x + y * y + z * z
+val Vector3D.lengthSquared get() = x * x + y * y + z * z
 
 /**
  * Linear interpolation.

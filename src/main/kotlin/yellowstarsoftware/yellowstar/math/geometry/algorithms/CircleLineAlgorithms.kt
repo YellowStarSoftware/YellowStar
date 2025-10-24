@@ -1,7 +1,7 @@
 package yellowstarsoftware.yellowstar.math.geometry.algorithms
 
 import yellowstarsoftware.yellowstar.math.geometry.Vector2D
-import yellowstarsoftware.yellowstar.math.geometry.lengthSq
+import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
 import yellowstarsoftware.yellowstar.math.geometry.objects.*
 import yellowstarsoftware.yellowstar.math.utils.QuadraticFunction
 import yellowstarsoftware.yellowstar.utils.reference.FloatReference
@@ -71,9 +71,9 @@ private fun circleLineCollisionQuadratic(
     lineDirection: Vector2D
 ): QuadraticFunction {
     val v = linePoint - circle.center
-    val lineDirectionLengthSquared = lineDirection.lengthSq
+    val lineDirectionLengthSquared = lineDirection.lengthSquared
     val p = 2 * (lineDirection dot v) / lineDirectionLengthSquared
-    val q = (v.lengthSq - circle.radiusSquared) / lineDirectionLengthSquared
+    val q = (v.lengthSquared - circle.radiusSquared) / lineDirectionLengthSquared
     return QuadraticFunction(
         p = p,
         q = q

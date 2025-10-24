@@ -15,7 +15,7 @@ data class Vector2D(
     /**
      * Length of the instance.
      */
-    val length get() = sqrt(lengthSq)
+    val length get() = sqrt(lengthSquared)
 
     /**
      * Returns a vector orthogonal to this instance.
@@ -33,14 +33,20 @@ data class Vector2D(
      * Vector sum.
      */
     operator fun plus(a: Vector2D): Vector2D {
-        return Vector2D(x + a.x, y + a.y)
+        return Vector2D(
+            x + a.x,
+            y + a.y
+        )
     }
 
     /**
      * Vector difference.
      */
     operator fun minus(a: Vector2D): Vector2D {
-        return Vector2D(x - a.x, y - a.y)
+        return Vector2D(
+            x - a.x,
+            y - a.y
+        )
     }
 
     /**
@@ -54,28 +60,40 @@ data class Vector2D(
      * Vector multiplication by value.
      */
     operator fun times(k: Float): Vector2D {
-        return Vector2D(x * k, y * k)
+        return Vector2D(
+            x * k,
+            y * k
+        )
     }
 
     /**
      * Per-component vector multiplication.
      */
     operator fun times(a: Vector2D): Vector2D {
-        return Vector2D(x * a.x, y * a.y)
+        return Vector2D(
+            x * a.x,
+            y * a.y
+        )
     }
 
     /**
      * Vector division by value.
      */
     operator fun div(k: Float): Vector2D {
-        return Vector2D(x / k, y / k)
+        return Vector2D(
+            x / k,
+            y / k
+        )
     }
 
     /**
      * Per-component vector division.
      */
     operator fun div(a: Vector2D): Vector2D {
-        return Vector2D(x / a.x, y / a.y)
+        return Vector2D(
+            x / a.x,
+            y / a.y
+        )
     }
 
     /**
@@ -114,18 +132,18 @@ data class Vector2D(
 /**
  * Squared length of the instance.
  */
-val Vector2D.lengthSq get() = x * x + y * y
+val Vector2D.lengthSquared get() = x * x + y * y
 
 /**
  * Angle of the instance with the OX axis.
  * Counted from OX counterclockwise.
  */
-val Vector2D.angle get() = atan2(y.toDouble(), x.toDouble()).toFloat()
+val Vector2D.angle get() = atan2(y, x)
 
 /**
  * Multiplication of vectors treated as complex numbers.
  */
-infix fun Vector2D.multAsComplex(z: Vector2D): Vector2D {
+infix fun Vector2D.timesAsComplex(z: Vector2D): Vector2D {
     return Vector2D(
         x * z.x - y * z.y,
         x * z.y + y * z.x
@@ -136,10 +154,10 @@ infix fun Vector2D.multAsComplex(z: Vector2D): Vector2D {
  * Division of vectors treated as complex numbers.
  */
 infix fun Vector2D.divAsComplex(z: Vector2D): Vector2D {
-    val zLength = z.lengthSq
+    val zLengthSquared = z.lengthSquared
     return Vector2D(
-        (x * z.x + y * z.y) / zLength,
-        (y * z.x - x * z.y) / zLength
+        (x * z.x + y * z.y) / zLengthSquared,
+        (y * z.x - x * z.y) / zLengthSquared
     )
 }
 

@@ -1,7 +1,7 @@
 package yellowstarsoftware.yellowstar.math.geometry.algorithms
 
 import yellowstarsoftware.yellowstar.math.geometry.Vector2D
-import yellowstarsoftware.yellowstar.math.geometry.lengthSq
+import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
 import yellowstarsoftware.yellowstar.math.geometry.objects.OrientedRectangle
 
 /**
@@ -20,5 +20,5 @@ fun OrientedRectangle.distanceToPointSquared(
         linearTerm = 2.0f * (a dot this.upDirection),
         maxX = aabb.height
     )
-    return part1 + part2 + a.lengthSq
+    return part1 + part2 + a.lengthSquared
 }

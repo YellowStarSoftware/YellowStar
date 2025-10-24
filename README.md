@@ -12,7 +12,6 @@ Features:
 	
 Probably upcoming features:
 - update Quaternion to be more consistent with Complex
-- update Vector4D to be more consistent with Vector2D/Vector3D
 - collision detection algorithms that are ready on paper but not in the project yet:
     - cut cone vs sphere (it's useful for frustum culling)
     - cylinder vs sphere
