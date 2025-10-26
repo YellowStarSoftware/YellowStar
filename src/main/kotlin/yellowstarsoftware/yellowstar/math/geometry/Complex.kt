@@ -1,5 +1,6 @@
 package yellowstarsoftware.yellowstar.math.geometry
 
+import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
@@ -20,7 +21,12 @@ data class Complex(
     val length get() = sqrt(lengthSquared)
 
     /**
-     * Complex conjugate.
+     * Rotation angle of the instance.
+     */
+    val angle get() = atan2(y, x)
+
+    /**
+     * Conjugate complex number.
      */
     val conjugate get() = Complex(x, -y)
 
@@ -77,12 +83,17 @@ data class Complex(
         /**
          * Real unit.
          */
-        val ONE = Complex(1.0f, 0.0f)
+        val ONE = Complex(1f, 0f)
 
         /**
          * Imaginary unit.
          */
-        val I = Complex(0.0f, 1.0f)
+        val I = Complex(0f, 1f)
+
+        /**
+         * Complex number defining no rotation.
+         */
+        val NO_ROTATION = ONE
 
         /**
          * Returns a complex number with given argument [angle] and 1 size.

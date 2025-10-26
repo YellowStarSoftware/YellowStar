@@ -11,7 +11,6 @@ Features:
 	- circle vs plane
 	
 Probably upcoming features:
-- update Quaternion to be more consistent with Complex
 - collision detection algorithms that are ready on paper but not in the project yet:
     - cut cone vs sphere (it's useful for frustum culling)
     - cylinder vs sphere

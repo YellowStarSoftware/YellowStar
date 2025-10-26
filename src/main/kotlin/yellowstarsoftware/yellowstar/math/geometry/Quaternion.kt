@@ -3,6 +3,7 @@ package yellowstarsoftware.yellowstar.math.geometry
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
+import kotlin.math.sqrt
 
 /**
  * Quaternion.
@@ -19,12 +20,12 @@ data class Quaternion(
 ) {
 
     /**
-     * Vector part of the quaternion.
+     * Length of the instance.
      */
-    val vectorPart get() = Vector3D(x, y, z)
+    val length get() = sqrt(lengthSquared)
 
     /**
-     * Rotation angle of the quaternion.
+     * Rotation angle of the instance.
      */
     val angle get() = atan2(vectorPart.length, w) * 2.0f
 
@@ -32,6 +33,42 @@ data class Quaternion(
      * Conjugate quaternion.
      */
     val conjugate get() = Quaternion(-x, -y, -z, w)
+
+    /**
+     * Vector part of the quaternion.
+     */
+    val vectorPart get() = Vector3D(x, y, z)
+
+    /**
+     * Sum of quaternions.
+     */
+    operator fun plus(q: Quaternion): Quaternion {
+        return Quaternion(
+            x + q.x,
+            y + q.y,
+            z + q.z,
+            w + q.w
+        )
+    }
+
+    /**
+     * Difference of quaternions.
+     */
+    operator fun minus(q: Quaternion): Quaternion {
+        return Quaternion(
+            x - q.x,
+            y - q.y,
+            z - q.z,
+            w - q.w
+        )
+    }
+
+    /**
+     * Negative quaternion.
+     */
+    operator fun unaryMinus(): Quaternion {
+        return Quaternion(-x, -y, -z, -w)
+    }
 
     /**
      * Quaternion multiplication.
@@ -49,13 +86,34 @@ data class Quaternion(
     companion object {
 
         /**
+         * Real unit.
+         */
+        val ONE = Quaternion(0f, 0f, 0f, 1f)
+
+        /**
+         * Imaginary unit i.
+         */
+        val I = Quaternion(1f, 0f, 0f, 0f)
+
+        /**
+         * Imaginary unit j.
+         */
+        val J = Quaternion(0f, 1f, 0f, 0f)
+
+        /**
+         * Imaginary unit k.
+         */
+        val K = Quaternion(0f, 0f, 1f, 0f)
+
+        /**
          * Quaternion defining no rotation.
          */
-        val NO_ROTATION = Quaternion(0f, 0f, 0f, 1f)
+        val NO_ROTATION = ONE
 
         /**
          * Creates a [Quaternion] for rotating
          * vectors around [axis] at [angle].
+         * [axis] must be unit length.
          */
         fun fromRotation(
             axis: Vector3D,
@@ -74,9 +132,15 @@ data class Quaternion(
 }
 
 /**
+ * Squared length of the instance.
+ */
+val Quaternion.lengthSquared get() = x * x + y * y + z * z + w * w
+
+/**
  * Rotates vector [v].
  */
 fun Quaternion.rotateVector(v: Vector3D): Vector3D {
-    val res = this.times(Quaternion(v.x, v.y, v.z, 0.0f)).times(this.conjugate)
+    val vq = Quaternion(v.x, v.y, v.z, 0f)
+    val res = this * vq * this.conjugate
     return Vector3D(res.x, res.y, res.z)
 }

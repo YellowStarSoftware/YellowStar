@@ -15,7 +15,7 @@ fun intersectsCircleRectangle(
 ): Boolean {
     return intersectsCircleRectangle(
         circle,
-        OrientedRectangle(rectangle, Complex.ONE)
+        OrientedRectangle(rectangle, Complex.NO_ROTATION)
     )
 }
 
