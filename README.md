@@ -10,10 +10,10 @@ Features:
 	- sphere vs 3D AABB/OBB
 	- circle vs plane
 	- cut cone vs sphere
+	- cylinder vs sphere
 	
 Probably upcoming features:
 - collision detection algorithms that are ready on paper but not in the project yet:
-    - cylinder vs sphere
 	- plane vs line/ray/segment
 	- polygon vs sphere
 	- polygon vs line/ray/segment

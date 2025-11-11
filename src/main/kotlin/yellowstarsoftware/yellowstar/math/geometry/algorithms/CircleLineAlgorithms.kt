@@ -5,15 +5,19 @@ import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
 import yellowstarsoftware.yellowstar.math.geometry.objects.*
 import yellowstarsoftware.yellowstar.math.utils.QuadraticFunction
 import yellowstarsoftware.yellowstar.utils.reference.FloatReference
+import yellowstarsoftware.yellowstar.utils.reference.ObjectReference
 
 /**
- * Checks if [circle] intersects [line] and
- * returns their intersection [Segment2D].
+ * Checks if [circle] intersects [line].
+ * In case of intersection writes [Segment2D]
+ * of intersection to [intersectionReference],
+ * otherwise leaves [intersectionReference]'s value unchanged.
  */
 fun intersectsCircleLine(
     circle: Circle2D,
-    line: Line2D
-): Segment2D? {
+    line: Line2D,
+    intersectionReference: ObjectReference<in Segment2D>
+): Boolean {
     val quadratic = circleLineCollisionQuadratic(
         circle,
         line.point,
@@ -22,11 +26,12 @@ fun intersectsCircleLine(
     val pFirst = FloatReference(0.0f)
     val pSecond = FloatReference(0.0f)
     val hasIntersection = quadratic.solveEquality(pFirst, pSecond)
-    if (!hasIntersection) return null
-    return Segment2D(
+    if (!hasIntersection) return false
+    intersectionReference.value = Segment2D(
         line.point + line.direction * pFirst.value,
         line.point + line.direction * pSecond.value
     )
+    return true
 }
 
 /**

@@ -1,29 +1,32 @@
 package yellowstarsoftware.yellowstar.math.geometry.algorithms
 
 import yellowstarsoftware.yellowstar.math.geometry.ObjectPlaneClassification
-import yellowstarsoftware.yellowstar.math.geometry.objects.Circle3D
-import yellowstarsoftware.yellowstar.math.geometry.objects.Plane
-import yellowstarsoftware.yellowstar.math.geometry.objects.Sphere
-import yellowstarsoftware.yellowstar.math.geometry.objects.radiusSquared
+import yellowstarsoftware.yellowstar.math.geometry.objects.*
+import yellowstarsoftware.yellowstar.utils.reference.ObjectReference
 import kotlin.math.sqrt
 
 /**
- * Finds [Circle3D] of intersection of [sphere] and [plane].
+ * Checks if [sphere] intersects [plane].
+ * In case of intersection writes [Circle3D]
+ * of intersection to [intersectionReference],
+ * otherwise leaves [intersectionReference]'s value unchanged.
  */
 fun intersectsSpherePlane(
     sphere: Sphere,
-    plane: Plane
-) : Circle3D? {
+    plane: Plane,
+    intersectionReference: ObjectReference<in Circle3D>
+): Boolean {
     val t = (plane.point - sphere.center) dot plane.normal
     val circleRadiusSquared = sphere.radiusSquared - t * t
     return if (circleRadiusSquared >= 0) {
-        Circle3D(
+        intersectionReference.value = Circle3D(
             center = sphere.center + plane.normal * t,
             radius = sqrt(circleRadiusSquared),
             normal = plane.normal
         )
+        true
     } else {
-        null
+        false
     }
 }
 
@@ -33,7 +36,8 @@ fun intersectsSpherePlane(
 fun classifySpherePlane(
     sphere: Sphere,
     plane: Plane
-) : ObjectPlaneClassification {
+): ObjectPlaneClassification {
+    // TODO: use signed distance method?
     val t = (plane.point - sphere.center) dot plane.normal
     if (t < -sphere.radius) return ObjectPlaneClassification.RIGHT
     if (t > sphere.radius) return ObjectPlaneClassification.LEFT

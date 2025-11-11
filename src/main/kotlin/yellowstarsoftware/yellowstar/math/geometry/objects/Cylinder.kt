@@ -17,8 +17,11 @@ data class Cylinder(
 )
 
 /**
+ * Squared radius of the instance.
+ */
+val Cylinder.radiusSquared get() = radius * radius
+
+/**
  * Diameter of the cylinder.
  */
-val Cylinder.diameter : Float get() {
-    return radius * 2f
-}
+val Cylinder.diameter get() = radius * 2f

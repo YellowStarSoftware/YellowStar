@@ -23,6 +23,4 @@ val Circle3D.radiusSquared get() = radius * radius
 /**
  * Diameter of the circle.
  */
-val Circle3D.diameter : Float get() {
-    return radius * 2f
-}
+val Circle3D.diameter get() = radius * 2f

@@ -20,6 +20,4 @@ val Sphere.radiusSquared get() = radius * radius
 /**
  * Diameter of the sphere.
  */
-val Sphere.diameter : Float get() {
-    return radius * 2f
-}
+val Sphere.diameter get() = radius * 2f

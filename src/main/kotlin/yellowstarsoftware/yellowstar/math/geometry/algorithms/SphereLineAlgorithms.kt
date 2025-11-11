@@ -5,15 +5,19 @@ import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
 import yellowstarsoftware.yellowstar.math.geometry.objects.*
 import yellowstarsoftware.yellowstar.math.utils.QuadraticFunction
 import yellowstarsoftware.yellowstar.utils.reference.FloatReference
+import yellowstarsoftware.yellowstar.utils.reference.ObjectReference
 
 /**
- * Checks if [sphere] intersects [line] and
- * returns their intersection [Segment3D].
+ * Checks if [sphere] intersects [line].
+ * In case of intersection writes [Segment3D]
+ * of intersection to [intersectionReference],
+ * otherwise leaves [intersectionReference]'s value unchanged.
  */
 fun intersectsSphereLine(
     sphere: Sphere,
-    line: Line3D
-): Segment3D? {
+    line: Line3D,
+    intersectionReference: ObjectReference<in Segment3D>
+): Boolean {
     val quadratic = sphereLineCollisionQuadratic(
         sphere,
         line.point,
@@ -22,11 +26,12 @@ fun intersectsSphereLine(
     val pFirst = FloatReference(0.0f)
     val pSecond = FloatReference(0.0f)
     val hasIntersection = quadratic.solveEquality(pFirst, pSecond)
-    if (!hasIntersection) return null
-    return Segment3D(
+    if (!hasIntersection) return false
+    intersectionReference.value = Segment3D(
         line.point + line.direction * pFirst.value,
         line.point + line.direction * pSecond.value
     )
+    return true
 }
 
 /**
