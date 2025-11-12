@@ -15,7 +15,7 @@ data class Line2D(
     /**
      * Normal to the line of unit length.
      */
-    val normal get() = direction.orthogonal
+    val normal get() = direction.orthogonalClockwise
 }
 
 /**

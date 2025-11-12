@@ -1,5 +1,6 @@
 package yellowstarsoftware.yellowstar.math.geometry.algorithms
 
+import yellowstarsoftware.yellowstar.math.geometry.ObjectHyperplaneClassification
 import yellowstarsoftware.yellowstar.math.geometry.Vector2D
 import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
 import yellowstarsoftware.yellowstar.math.geometry.objects.*
@@ -68,6 +69,19 @@ fun intersectsCircleRay(
         t0 = 0.0f,
         t1 = Float.MAX_VALUE
     )
+}
+
+/**
+ * Classifies [circle] relative to [line].
+ */
+fun classifyCircleLine(
+    circle: Circle2D,
+    line: Line2D
+): ObjectHyperplaneClassification {
+    val t = line.signedDistanceTo(circle.center)
+    if (t > circle.radius) return ObjectHyperplaneClassification.RIGHT
+    if (t < -circle.radius) return ObjectHyperplaneClassification.LEFT
+    return ObjectHyperplaneClassification.INTERSECTS
 }
 
 private fun circleLineCollisionQuadratic(

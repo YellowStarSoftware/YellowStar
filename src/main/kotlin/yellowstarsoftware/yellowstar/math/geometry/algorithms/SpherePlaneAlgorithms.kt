@@ -1,6 +1,6 @@
 package yellowstarsoftware.yellowstar.math.geometry.algorithms
 
-import yellowstarsoftware.yellowstar.math.geometry.ObjectPlaneClassification
+import yellowstarsoftware.yellowstar.math.geometry.ObjectHyperplaneClassification
 import yellowstarsoftware.yellowstar.math.geometry.objects.*
 import yellowstarsoftware.yellowstar.utils.reference.ObjectReference
 import kotlin.math.sqrt
@@ -36,9 +36,9 @@ fun intersectsSpherePlane(
 fun classifySpherePlane(
     sphere: Sphere,
     plane: Plane
-): ObjectPlaneClassification {
+): ObjectHyperplaneClassification {
     val t = plane.signedDistanceTo(sphere.center)
-    if (t > sphere.radius) return ObjectPlaneClassification.RIGHT
-    if (t < -sphere.radius) return ObjectPlaneClassification.LEFT
-    return ObjectPlaneClassification.INTERSECTS
+    if (t > sphere.radius) return ObjectHyperplaneClassification.RIGHT
+    if (t < -sphere.radius) return ObjectHyperplaneClassification.LEFT
+    return ObjectHyperplaneClassification.INTERSECTS
 }
