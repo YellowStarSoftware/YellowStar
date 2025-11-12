@@ -10,9 +10,7 @@ import yellowstarsoftware.yellowstar.math.geometry.Vector2D
 data class Circle2D(
     val center: Vector2D,
     val radius: Float
-) {
-    companion object
-}
+)
 
 /**
  * Squared radius of the instance.

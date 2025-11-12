@@ -35,7 +35,7 @@ data class Rectangle(
     companion object {
 
         /**
-         * Creates a [BoundingBox] with given center and size.
+         * Creates a [Rectangle] with given center and size.
          * @param center center
          * @param size size
          */

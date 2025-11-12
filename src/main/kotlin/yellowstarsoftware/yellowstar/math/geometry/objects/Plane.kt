@@ -22,14 +22,23 @@ data class Plane(
          */
         fun fromPlaneEquation(A: Float, B: Float, C: Float, D: Float): Plane {
             return Plane(
-                Vector3D(A, B, C).normalized,
                 // indexOfMax to prevent division by zero!
-                when (indexOfMax(abs(A), abs(B), abs(C))) {
+                point = when (indexOfMax(abs(A), abs(B), abs(C))) {
                     0 -> Vector3D(-D / A, 0.0f, 0.0f)
                     1 -> Vector3D(0.0f, -D / B, 0.0f)
                     else -> Vector3D(0.0f, 0.0f, -D / C)
-                }
+                },
+                normal = Vector3D(A, B, C).normalized
             )
         }
     }
+}
+
+/**
+ * Signed distance from [this] plane to [point].
+ */
+fun Plane.signedDistanceTo(
+    point: Vector3D
+): Float {
+    return (point - this.point) dot this.normal
 }

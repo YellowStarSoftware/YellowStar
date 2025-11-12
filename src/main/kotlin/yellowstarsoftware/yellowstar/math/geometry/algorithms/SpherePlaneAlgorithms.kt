@@ -16,11 +16,11 @@ fun intersectsSpherePlane(
     plane: Plane,
     intersectionReference: ObjectReference<in Circle3D>
 ): Boolean {
-    val t = (plane.point - sphere.center) dot plane.normal
+    val t = plane.signedDistanceTo(sphere.center)
     val circleRadiusSquared = sphere.radiusSquared - t * t
     return if (circleRadiusSquared >= 0) {
         intersectionReference.value = Circle3D(
-            center = sphere.center + plane.normal * t,
+            center = sphere.center - plane.normal * t,
             radius = sqrt(circleRadiusSquared),
             normal = plane.normal
         )
@@ -37,9 +37,8 @@ fun classifySpherePlane(
     sphere: Sphere,
     plane: Plane
 ): ObjectPlaneClassification {
-    // TODO: use signed distance method?
-    val t = (plane.point - sphere.center) dot plane.normal
-    if (t < -sphere.radius) return ObjectPlaneClassification.RIGHT
-    if (t > sphere.radius) return ObjectPlaneClassification.LEFT
+    val t = plane.signedDistanceTo(sphere.center)
+    if (t > sphere.radius) return ObjectPlaneClassification.RIGHT
+    if (t < -sphere.radius) return ObjectPlaneClassification.LEFT
     return ObjectPlaneClassification.INTERSECTS
 }

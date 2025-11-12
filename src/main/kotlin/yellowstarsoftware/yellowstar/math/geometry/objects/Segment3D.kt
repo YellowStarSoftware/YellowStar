@@ -10,4 +10,14 @@ import yellowstarsoftware.yellowstar.math.geometry.Vector3D
 data class Segment3D(
     val first: Vector3D,
     val second: Vector3D
-)
+) {
+
+    /**
+     * The line on which the segment lies.
+     * Length of the segment must not be zero.
+     */
+    val line get() = Line3D(
+        point = first,
+        direction = (second - first).normalized
+    )
+}

@@ -10,4 +10,14 @@ import yellowstarsoftware.yellowstar.math.geometry.Vector2D
 data class Segment2D(
     val first: Vector2D,
     val second: Vector2D
-)
+) {
+
+    /**
+     * The line on which the segment lies.
+     * Length of the segment must not be zero.
+     */
+    val line get() = Line2D(
+        point = first,
+        direction = (second - first).normalized
+    )
+}
