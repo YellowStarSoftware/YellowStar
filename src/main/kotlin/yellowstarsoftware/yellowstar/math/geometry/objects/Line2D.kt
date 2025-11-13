@@ -1,6 +1,7 @@
 package yellowstarsoftware.yellowstar.math.geometry.objects
 
 import yellowstarsoftware.yellowstar.math.geometry.Vector2D
+import kotlin.math.abs
 
 /**
  * Two-dimensional line.
@@ -16,6 +17,25 @@ data class Line2D(
      * Normal to the line of unit length.
      */
     val normal get() = direction.orthogonalClockwise
+
+    companion object {
+
+        /**
+         * Creates a line defined with given equation A*x + B*y + C = 0.
+         * A*B must not be zero.
+         */
+        fun fromLineEquation(A: Float, B: Float, C: Float): Line2D {
+            return Line2D(
+                // we compare abs(A) and abs(B) to prevent zero division
+                point = if (abs(A) > abs(B)) {
+                    Vector2D(-C / A, 0.0f)
+                } else {
+                    Vector2D(0.0f, -C / B)
+                },
+                direction = Vector2D(A, B).normalized.orthogonalCounterclockwise
+            )
+        }
+    }
 }
 
 /**

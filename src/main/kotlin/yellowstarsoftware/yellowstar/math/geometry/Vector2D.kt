@@ -19,15 +19,20 @@ data class Vector2D(
 
     /**
      * Returns a vector orthogonal to this instance.
-     * Obtained by rotating this vector counterclockwise by pi/2.
      */
-    val orthogonal get() = Vector2D(-y, x)
+    val orthogonal get() = orthogonalCounterclockwise
 
     /**
      * Returns a vector orthogonal to this instance.
      * Obtained by rotating this vector clockwise by pi/2.
      */
     val orthogonalClockwise get() = Vector2D(y, -x)
+
+    /**
+     * Returns a vector orthogonal to this instance.
+     * Obtained by rotating this vector counterclockwise by pi/2.
+     */
+    val orthogonalCounterclockwise get() = Vector2D(-y, x)
 
     /**
      * Normalized vector.
