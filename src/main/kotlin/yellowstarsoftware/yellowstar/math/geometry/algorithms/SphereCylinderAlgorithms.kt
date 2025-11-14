@@ -17,12 +17,12 @@ fun intersectsSphereCylinder(
 ) : Boolean {
     val v = sphere.center - cylinder.position
     val d = v dot cylinder.direction
-    val t1 = max(0f, d - sphere.radius)
-    val t2 = min(cylinder.height, d + sphere.radius)
-    if (t2 < t1) return false
+    val t0 = max(0f, d - sphere.radius)
+    val t1 = min(cylinder.height, d + sphere.radius)
+    if (t1 < t0) return false
     val fSq = when {
-        d > t2 -> sphere.radiusSquared - sqr(t2 - d)
-        d < t1 -> sphere.radiusSquared - sqr(t1 - d)
+        d > t1 -> sphere.radiusSquared - sqr(t1 - d)
+        d < t0 -> sphere.radiusSquared - sqr(t0 - d)
         else -> sphere.radiusSquared
     }
     val lSq = v.lengthSquared - sqr(d)

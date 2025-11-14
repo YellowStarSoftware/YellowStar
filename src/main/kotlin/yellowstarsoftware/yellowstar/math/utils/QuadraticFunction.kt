@@ -5,7 +5,6 @@ import kotlin.math.sqrt
 
 /**
  * Quadratic function f(x) = x*x + p*x + q = 0.
- *
  * @property p coefficient of x
  * @property q free term
  */

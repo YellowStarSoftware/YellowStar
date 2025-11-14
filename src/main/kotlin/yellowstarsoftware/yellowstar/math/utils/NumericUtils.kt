@@ -5,16 +5,23 @@ import kotlin.math.max
 import kotlin.math.min
 
 /**
- * Square root of [a].
+ * Returns [a] * [a].
  */
 fun sqr(a: Float): Float {
     return a * a
 }
 
 /**
- * Square root of [a].
+ * Returns [a] * [a].
  */
 fun sqr(a: Double): Double {
+    return a * a
+}
+
+/**
+ * Returns [a] * [a].
+ */
+fun sqr(a: Int): Int {
     return a * a
 }
 
