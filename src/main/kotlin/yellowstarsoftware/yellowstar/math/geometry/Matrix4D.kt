@@ -128,8 +128,6 @@ class Matrix4D private constructor(
 
     companion object {
 
-        val Unit = create { i, j -> if (i == j) 1.0f else 0.0f }
-
         /**
          * Creates a matrix.
          * @param builder matrix entries provider

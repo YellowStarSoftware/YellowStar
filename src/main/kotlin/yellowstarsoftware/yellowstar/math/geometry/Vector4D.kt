@@ -141,6 +141,18 @@ fun Vector4D.lerp(b: Vector4D, t: Float): Vector4D {
 }
 
 /**
+ * Obtains a [Vector3D] from [this] vector
+ * treated as homogeneous coordinates.
+ */
+fun Vector4D.fromHomogeneousCoordinates(): Vector3D {
+    return Vector3D(
+        x = x / w,
+        y = y / w,
+        z = z / w
+    )
+}
+
+/**
  * @see Vector4D.times
  */
 operator fun Float.times(a: Vector4D): Vector4D {
