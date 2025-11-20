@@ -14,17 +14,17 @@ data class OrientedBoundingBox(
 ) {
 
     /**
-     * "Right" direction of the instance.
+     * "Right" direction of the instance of unit size.
      */
     val rightDirection get() = rotation.rotateVector(Vector3D.I)
 
     /**
-     * "Up" direction of the instance.
+     * "Up" direction of the instance of unit size.
      */
     val upDirection get() = rotation.rotateVector(Vector3D.J)
 
     /**
-     * "Forth" direction of the instance.
+     * "Forth" direction of the instance of unit size.
      */
     val forthDirection get() = rotation.rotateVector(Vector3D.K)
 
@@ -47,4 +47,21 @@ data class OrientedBoundingBox(
             )
         }
     }
+}
+
+/**
+ * Checks if [this] [OrientedBoundingBox] contains [point].
+ */
+operator fun OrientedBoundingBox.contains(
+    point: Vector3D
+): Boolean {
+    val (w, h, l) = this.boundingBox.size
+    val v = point - this.boundingBox.min
+    val x = v dot this.rightDirection
+    if (x < 0f || x > w) return false
+    val y = v dot this.upDirection
+    if (y < 0f || y > h) return false
+    val z = v dot this.forthDirection
+    if (z < 0f || z > l) return false
+    return true
 }

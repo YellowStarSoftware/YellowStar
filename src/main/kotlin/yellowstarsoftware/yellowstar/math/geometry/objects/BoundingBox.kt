@@ -56,3 +56,17 @@ data class BoundingBox(
         }
     }
 }
+
+/**
+ * Checks if [this] [BoundingBox] contains [point].
+ */
+operator fun BoundingBox.contains(
+    point: Vector3D
+): Boolean {
+    val (x, y, z) = point
+    val (minX, minY, minZ) = this.min
+    val (maxX, maxY, maxZ) = this.max
+    return x >= minX && x <= maxX &&
+        y >= minY && y <= maxY &&
+        z >= minZ && z <= maxZ
+}

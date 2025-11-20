@@ -51,3 +51,15 @@ data class Rectangle(
         }
     }
 }
+
+/**
+ * Checks if [this] [Rectangle] contains [point].
+ */
+operator fun Rectangle.contains(
+    point: Vector2D
+): Boolean {
+    val (x, y) = point
+    val (minX, minY) = this.min
+    val (maxX, maxY) = this.max
+    return x >= minX && x <= maxX && y >= minY && y <= maxY
+}

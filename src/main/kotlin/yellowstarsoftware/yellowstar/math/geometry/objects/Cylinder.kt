@@ -1,6 +1,8 @@
 package yellowstarsoftware.yellowstar.math.geometry.objects
 
 import yellowstarsoftware.yellowstar.math.geometry.Vector3D
+import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
+import yellowstarsoftware.yellowstar.math.utils.sqr
 
 /**
  * Cylinder.
@@ -25,3 +27,16 @@ val Cylinder.radiusSquared get() = radius * radius
  * Diameter of the cylinder.
  */
 val Cylinder.diameter get() = radius * 2f
+
+/**
+ * Checks if [this] [Cylinder] contains [point].
+ */
+operator fun Cylinder.contains(
+    point: Vector3D
+): Boolean {
+    val v = point - this.position
+    val d = v dot this.direction
+    if (d < 0f || d > this.height) return false
+    val lSq = v.lengthSquared - sqr(d)
+    return lSq <= this.radiusSquared
+}

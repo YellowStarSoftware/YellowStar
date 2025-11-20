@@ -16,12 +16,12 @@ data class OrientedRectangle(
 ) {
 
     /**
-     * "Right" direction of the instance.
+     * "Right" direction of the instance of unit size.
      */
     val rightDirection: Vector2D get() = rotation.rotate(Vector2D.I)
 
     /**
-     * "Up" direction of the instance.
+     * "Up" direction of the instance of unit size.
      */
     val upDirection: Vector2D get() = rotation.rotate(Vector2D.J)
 
@@ -44,4 +44,19 @@ data class OrientedRectangle(
             )
         }
     }
+}
+
+/**
+ * Checks if [this] [OrientedRectangle] contains [point].
+ */
+operator fun OrientedRectangle.contains(
+    point: Vector2D
+): Boolean {
+    val v = point - this.rectangle.min
+    val (w, h) = this.rectangle.size
+    val x = v dot this.rightDirection
+    if (x < 0f || x > w) return false
+    val y = v dot this.upDirection
+    if (y < 0f || y > h) return false
+    return true
 }

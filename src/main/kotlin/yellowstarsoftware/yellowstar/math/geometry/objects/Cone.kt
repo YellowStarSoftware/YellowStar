@@ -1,6 +1,8 @@
 package yellowstarsoftware.yellowstar.math.geometry.objects
 
 import yellowstarsoftware.yellowstar.math.geometry.Vector3D
+import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
+import yellowstarsoftware.yellowstar.math.utils.sqr
 
 /**
  * Cut cone.
@@ -37,3 +39,16 @@ val Cone.startBaseRadius get() = startHeight * radiusCoefficient
  * Radius of the largest base of the instance.
  */
 val Cone.endBaseRadius get() = endHeight * radiusCoefficient
+
+/**
+ * Checks if [this] [Cone] contains [point].
+ */
+operator fun Cone.contains(
+    point: Vector3D
+): Boolean {
+    val v = point - this.vertex
+    val d = v dot this.direction
+    if (d < this.startHeight || d > this.endHeight) return false
+    val lSq = v.lengthSquared - sqr(d)
+    return lSq <= sqr(this.radiusCoefficient * d)
+}
