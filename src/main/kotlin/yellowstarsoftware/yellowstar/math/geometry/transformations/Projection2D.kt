@@ -7,7 +7,7 @@ import yellowstarsoftware.yellowstar.math.geometry.objects.Line2D
  * Perspective projection.
  * Projects [point] onto [line] parallel to direction,
  * where direction = [point] - [projectionCenter].
- * direction must not be perpendicular to [Line2D.normal]
+ * direction must not be parallel to [line].
  */
 fun pointPerspectiveProjection(
     point: Vector2D,
@@ -39,7 +39,7 @@ fun pointOrthographicProjection(
 /**
  * Parallel projection.
  * Projects [point] onto [line] parallel to [direction].
- * [direction] must not be perpendicular to [Line2D.normal]
+ * [direction] must not be parallel to [line].
  */
 fun pointParallelProjection(
     point: Vector2D,

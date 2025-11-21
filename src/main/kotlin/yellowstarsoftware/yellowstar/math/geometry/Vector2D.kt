@@ -36,7 +36,7 @@ data class Vector2D(
 
     /**
      * Normalized vector.
-     * [length] of this instance should not be zero.
+     * [length] of this instance must not be zero.
      */
     val normalized get() = this.div(length)
 

@@ -40,7 +40,7 @@ fun createOrthographicProjectionMatrix(
  * Creates a parallel projection [Matrix4D].
  * The matrix defines projection of a point
  * onto [plane] parallel to [direction].
- * [direction] must not be perpendicular to [Plane.normal]
+ * [direction] must not be parallel to [plane].
  */
 fun createParallelProjectionMatrix(
     plane: Plane,

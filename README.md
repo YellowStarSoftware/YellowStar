@@ -19,6 +19,8 @@ Features:
 	- circle vs plane
 	- cut cone vs sphere
 	- cylinder vs sphere
+	- plane vs line/ray/segment
+	- line vs line/ray/segment
 - algorithms for checking if an object contains a point for:
     - circle
 	- rectangle (aka AABB in 2D)
@@ -31,7 +33,6 @@ Features:
 	
 Probably upcoming features:
 - collision detection algorithms that are ready on paper but not in the project yet:
-	- plane vs line/ray/segment
 	- polygon vs sphere
 	- polygon vs line/ray/segment
 	- polygon vs polygon

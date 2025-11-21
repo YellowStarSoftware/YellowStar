@@ -39,7 +39,7 @@ fun createOrthographicProjectionMatrix(
  * Creates a parallel projection [Matrix3D].
  * The matrix defines projection of a point
  * onto [line] parallel to [direction].
- * [direction] must not be perpendicular to [Line2D.normal]
+ * [direction] must not be parallel to [line].
  */
 fun createParallelProjectionMatrix(
     line: Line2D,

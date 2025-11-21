@@ -7,7 +7,7 @@ import yellowstarsoftware.yellowstar.math.geometry.objects.Plane
  * Perspective projection.
  * Projects [point] onto [plane] parallel to direction,
  * where direction = [point] - [projectionCenter].
- * direction must not be perpendicular to [Plane.normal]
+ * direction must not be parallel to [plane].
  */
 fun pointPerspectiveProjection(
     point: Vector3D,
@@ -39,7 +39,7 @@ fun pointOrthographicProjection(
 /**
  * Parallel projection.
  * Projects [point] onto [plane] parallel to [direction].
- * [direction] must not be perpendicular to [Plane.normal]
+ * [direction] must not be parallel to [plane].
  */
 fun pointParallelProjection(
     point: Vector3D,
