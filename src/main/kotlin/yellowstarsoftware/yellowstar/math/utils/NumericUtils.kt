@@ -91,34 +91,6 @@ fun clamp(
 }
 
 /**
- * Maps value [t] in interval [a1]..[a2] onto interval [b1]..[b2].
- */
-fun map(
-    t: Float,
-    a1: Float,
-    a2: Float,
-    b1: Float,
-    b2: Float
-): Float {
-    val k = (b2 - b1) / (a2 - a1)
-    return (t - a1) * k + b1
-}
-
-/**
- * Maps value [t] in interval [a1]..[a2] onto interval [b1]..[b2].
- */
-fun map(
-    t: Double,
-    a1: Double,
-    a2: Double,
-    b1: Double,
-    b2: Double
-): Double {
-    val k = (b2 - b1) / (a2 - a1)
-    return (t - a1) * k + b1
-}
-
-/**
  * Linear interpolation between [a] and [b] with parameter [t].
  */
 fun lerp(
