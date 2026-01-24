@@ -1,5 +1,7 @@
 package yellowstarsoftware.yellowstar.math.utils
 
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 /**
@@ -46,9 +48,9 @@ fun mapAndCoerce(
     a2 = a2,
     b1 = b1,
     b2 = b2
-).coerceIn(
-    minimumValue = b1,
-    maximumValue = b2
+).smartCoerceIn(
+    first = b1,
+    second = b2
 )
 
 /**
@@ -67,9 +69,9 @@ fun mapAndCoerce(
     a2 = a2,
     b1 = b1,
     b2 = b2
-).coerceIn(
-    minimumValue = b1,
-    maximumValue = b2
+).smartCoerceIn(
+    first = b1,
+    second = b2
 )
 
 /**
@@ -88,9 +90,9 @@ fun mapAndCoerce(
     a2 = a2,
     b1 = b1.toFloat(),
     b2 = b2.toFloat()
-).roundToInt().coerceIn(
-    minimumValue = b1,
-    maximumValue = b2
+).roundToInt().smartCoerceIn(
+    first = b1,
+    second = b2
 )
 
 /**
@@ -109,7 +111,31 @@ fun mapAndCoerce(
     a2 = a2,
     b1 = b1.toDouble(),
     b2 = b2.toDouble()
-).roundToInt().coerceIn(
-    minimumValue = b1,
-    maximumValue = b2
+).roundToInt().smartCoerceIn(
+    first = b1,
+    second = b2
+)
+
+private fun Float.smartCoerceIn(
+    first: Float,
+    second: Float
+) = coerceIn(
+    minimumValue = min(first, second),
+    maximumValue = max(first, second)
+)
+
+private fun Double.smartCoerceIn(
+    first: Double,
+    second: Double
+) = coerceIn(
+    minimumValue = min(first, second),
+    maximumValue = max(first, second)
+)
+
+private fun Int.smartCoerceIn(
+    first: Int,
+    second: Int
+) = coerceIn(
+    minimumValue = min(first, second),
+    maximumValue = max(first, second)
 )
