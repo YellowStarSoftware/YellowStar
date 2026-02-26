@@ -109,7 +109,7 @@ class Matrix4D private constructor(
      * Returns array that contains matrix
      * entries in row-major order.
      */
-    fun getValues(): FloatArray {
+    fun getValuesRowMajorOrder(): FloatArray {
         return values.copyOf()
     }
 
