@@ -1,10 +1,9 @@
 plugins {
     kotlin("jvm") version "2.0.0"
     java
-    `java-library`
+    `maven-publish`
 }
 
-group = "YellowStarSoftware"
 version = "0.0.19"
 
 repositories {
@@ -13,4 +12,23 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+}
+
+publishing {
+    publications {
+        register("YellowStar", MavenPublication::class) {
+            groupId = "yellow-star-software"
+            artifactId = "yellow-star"
+            from(components["java"])
+        }
+    }
+    repositories {
+        val localRepoPath = project.property("localMavenRepositoryPath")
+        if (localRepoPath is String) {
+            maven {
+                name = "localFileRepository"
+                url = uri(localRepoPath)
+            }
+        }
+    }
 }
