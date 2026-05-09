@@ -1,6 +1,7 @@
 package yellowstarsoftware.yellowstar.math.geometry.algorithms
 
 import yellowstarsoftware.yellowstar.math.geometry.Vector2D
+import yellowstarsoftware.yellowstar.math.geometry.algorithms.internal.distanceFunctionPart
 import yellowstarsoftware.yellowstar.math.geometry.lengthSquared
 import yellowstarsoftware.yellowstar.math.geometry.objects.OrientedRectangle
 

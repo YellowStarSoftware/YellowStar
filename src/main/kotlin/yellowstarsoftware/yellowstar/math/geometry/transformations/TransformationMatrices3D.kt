@@ -2,6 +2,7 @@ package yellowstarsoftware.yellowstar.math.geometry.transformations
 
 import yellowstarsoftware.yellowstar.math.geometry.Matrix4D
 import yellowstarsoftware.yellowstar.math.geometry.Vector3D
+import yellowstarsoftware.yellowstar.math.geometry.transformations.internal.createIntervalMappingScaleTranslate
 
 /**
  * Creates a linear transformation matrix 4x4 defined by vectors

@@ -1,4 +1,4 @@
-package yellowstarsoftware.yellowstar.math.geometry.transformations
+package yellowstarsoftware.yellowstar.math.geometry.transformations.internal
 
 /**
  * Creates a [Pair] of scale and translate

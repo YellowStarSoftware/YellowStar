@@ -1,4 +1,4 @@
-package yellowstarsoftware.yellowstar.math.geometry.algorithms
+package yellowstarsoftware.yellowstar.math.geometry.algorithms.internal
 
 import yellowstarsoftware.yellowstar.math.utils.min
 import yellowstarsoftware.yellowstar.math.utils.sqr
